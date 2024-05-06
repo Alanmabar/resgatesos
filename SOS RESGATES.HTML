@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ajuda para Vítimas de Desastres Naturais</title>
+        <!-- Adicionando estilos CSS -->
+        <style>
+            /* Estilos CSS aqui */
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Conteúdo HTML aqui -->
+        </div>
+
+        <!-- Scripts JavaScript -->
+        <script>
+            // JavaScript aqui
+            document.addEventListener("DOMContentLoaded", function () {
+                openTab(event, 'resgate');
+                showLocations('resgate');
+                showLocations('eldoradoDoSul'); // Adicionando esta linha
+            });
+
+            // Restante do JavaScript aqui
+        </script>
+    </body>
+    </html>
+
+    <!-- Adicionando estilos CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .tab {
+            overflow: hidden;
+        }
+        .tab button {
+            background-color: #f5f5f5;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+        }
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-container input[type=text] {
+            padding: 10px;
+            width: 50%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container input[type=text] {
+            padding: 10px;
+            width: calc(100% - 80px);
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SOS RESGATES</h1>
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="searchLocations()" placeholder="Pesquisar por nome...">
+        </div>
+        <!-- Abas -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'resgate')">Canoas</button>
+            <button class="tablinks" onclick="openTab(event, 'eldoradoDoSul')">Eldorado do Sul</button>
+            <button class="tablinks" onclick="openTab(event, 'portoAlegre')">Porto Alegre</button>
+            <button class="tablinks" onclick="openTab(event, 'saoLeopoldo')">Gaíba e São Leopoldo</button>
+        </div>
+        <!-- Conteúdo das Abas -->
+        <div id="resgate" class="tabcontent">
+            <h2>Canoas</h2>
+            <ul id="resgate-list"></ul>
+            <!-- Formulário para adicionar novo endereço de resgate -->
+            <div class="form-container">
+                <h3>Adicionar Novo Endereço de Resgate</h3>
+                <input type="text" id="newResgateInput" placeholder="Digite o novo endereço...">
+                <button onclick="addNewResgate()">Adicionar</button>
+            </div>
+        </div>
+        <div id="eldoradoDoSul" class="tabcontent">
+            <h2>Eldorado do Sul</h2>
+            <ul id="eldoradoDoSul-list"></ul>
+            <!-- Formulário para adicionar novo endereço em Eldorado do Sul -->
+            <div class="form-container">
+                <h3>Adicionar Novo Endereço em Eldorado do Sul</h3>
+                <input type="text" id="newEldoradoInput" placeholder="Digite o novo endereço...">
+                <button onclick="addNewEldorado()">Adicionar</button>
+            </div>
+        </div>
+        <div id="portoAlegre" class="tabcontent">
+            <h2>Porto Alegre</h2>
+            <ul id="portoAlegre-list">
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Joanita+Castro+de+Freitas,+57" target="_blank">Rua Joanita Castro de Freitas, 57</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Frederico+Mentz+179" target="_blank">Rua Frederico Mentz 179</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Av+José+Aloísio+Filho,+965" target="_blank">Av José Aloísio Filho, 965</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Av+José+Aloísio+Filho,+975" target="_blank">Av José Aloísio Filho, 975</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Av.+José+Aloísio+Filho,+801" target="_blank">Av. José Aloísio Filho, 801</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Final+da+José+Aloísio+Filho,+PRF+-+Cond+Croma" target="_blank">Final da José Aloísio Filho, PRF - Cond Croma</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Av+Aj+Renner+781" target="_blank">Av Aj Renner 781</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Affonso+Robles+Filho+56" target="_blank">Rua Affonso Robles Filho 56</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Graciano+Camozatto+304" target="_blank">Rua Graciano Camozatto 304</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Av+Clovis+Paim+Grivot,+350" target="_blank">Av Clovis Paim Grivot, 350</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Joao+de+Souza+Ribeiro,+155,+bloco2+apto203" target="_blank">Rua Professor Joao de Souza Ribeiro, 155, bloco2 apto203</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Joao+de+Souza+Ribeiro,+995" target="_blank">Rua Professor Joao de Souza Ribeiro, 995</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Av+Ferroviária+Diretor+Pestana+1322" target="_blank">Av Ferroviária Diretor Pestana 1322</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Max+Juniman+140+apto+202" target="_blank">Rua Max Juniman 140 apto 202</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Max+Junimam,+30,+bloco+A,+apto+401" target="_blank">Rua Max Junimam, 30, bloco A, apto 401</a></li>
+            </ul>
+            <!-- Formulário para adicionar novo endereço em Porto Alegre -->
+            <div class="form-container">
+                <h3>Adicionar Novo Endereço em Porto Alegre</h3>
+                <input type="text" id="newPortoAlegreInput" placeholder="Digite o novo endereço...">
+                <button onclick="addNewPortoAlegre()">Adicionar</button>
+            </div>
+        </div>
+endereço...">
+                <button onclick="addNewPortoAlegre()">Adicionar</button>
+            </div>
+        </div>
+    <div id="guaibaSaoLeopoldo" class="tabcontent">
+        <h2>Guaíba e São Leopoldo</h2>
+        <ul id="guaibaSaoLeopoldo-list">
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Padre+ChaGAS+231" target="_blank">Rua Padre ChaGAS 231</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Teodorico+moutinho+187" target="_blank">Rua Teodorico Moutinho 187</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Tomé+de+Souza,+100" target="_blank">Rua Tomé de Souza, 100</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Rua+Doze,+bloco+123+ap+5" target="_blank">Rua Doze, bloco 123 ap 5</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=COHAB" target="_blank">COHAB</a></li>
+        </ul>
+        <!-- Formulário para adicionar novo endereço em Guaíba e São Leopoldo -->
+        <div class="form-container">
+            <h3>Adicionar Novo Endereço em Guaíba e São Leopoldo</h3>
+            <input type="text" id="newGuaibaSaoLeopoldoInput" placeholder="Digite o novo endereço...">
+            <button onclick="addNewGuaibaSaoLeopoldo()">Adicionar</button>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Locais de resgate existentes
+        var locaisResgate = [
+            "Coronel de Medeiros, 644, Mathias - Harmonia",
+            "Rua do Povo, 310",
+            "ADERBAL ROCHA DE FRAGA 126",
+            "Rua I Progresso, 190 - Bairro Progresso, ELDORADO DO SUL",
+            "Estrada do Conde, 57",
+            "RUA LIVRAMENTO 1056, CENTRO NOVO",
+            "Dom João Becker 1781",
+            "Tarso Galvão Bueno filho 188 quadra 65",
+            "Rio branco boa vista 1707",
+            "Rua Nestor Jardim Filho - 50 casa 21",
+            "Rua Zelma Antunes Pereira, 146",
+            "Rua Rui Barbosa 1290, BAIRRO DE FÁTIMA",
+            "Rua João Aluysio Jacob, 380, BAIRRO DE FÁTIMA",
+            "Rua Joaquim Caetano 660, BAIRRO DE FÁTIMA",
+            "Rua São João 161, BAIRRO DE FÁTIMA",
+            "Rua Dom Joao Becker 1852, BAIRRO DE FÁTIMA",
+            "Rua Dom Joao Becker 1910, BAIRRO DE FÁTIMA",
+            "Rua Braulino pansera 751, BAIRRO DE FÁTIMA",
+            "Rua Bartolomeu de Gusmão, 1212, BAIRRO DE FÁTIMA",
+            "Rua Zumbi, 1154, HARMONIA",
+            "Rua Marcilio Dias 311, HARMONIA",
+            "Rua Engenheiro Kindle, 1280, HARMONIA",
+            "Rua Negrinho Santos, 657, HARMONIA",
+            "Rua Nossa senhora de Fatima 945, HARMONIA",
+            "Rua Sao Pedro Pescador, 1045, HARMONIA",
+            "Rua dos Professores 1045, HARMONIA",
+            "Rua Coronel Machado, 91, HARMONIA",
+            "Rua Engenheiro Kindler 1060, HARMONIA",
+            "Rua Engenheiro Kindler 1280, HARMONIA",
+            "Rua dos Pavoes 153, HARMONIA",
+            "Rua Santa Rita de Cassia, 40, HARMONIA",
+            "Rua José Veríssimo 2049, HARMONIA",
+            "Rua Romeu morsch 259, HARMONIA",
+            "Rua Romeu morsch 243, HARMONIA",
+            "Rua Dona Maria Isabel, HARMONIA",
+            "Rua Dona Maria Isabel, 222, HARMONIA",
+            "Rua Jardim America 93, HARMONIA",
+            "Rua dos Biscateiros 315, HARMONIA",
+            "Rua Sáo Joao Batista 1212, HARMONIA",
+            "Rua Clovis Belvilaque, 1294, HARMONIA",
+            "Rua Índio Sepé 342, HARMONIA",
+            "Rua Coronel Medeiros 341, HARMONIA",
+            "Rua Coronel Medeiros, 341, HARMONIA",
+            "Rua Júlio Cardoso de Araújo, 499, HARMONIA",
+            "Rua Santo Antonio dos Pobres, 895, HARMONIA",
+            "Rua Julio Cardoso de Araujo, 499, HARMONIA",
+            "Rua Santa Rita de Cassia, 232, HARMONIA",
+            "Rua Chiquinha Gonzaga, 72, HARMONIA",
+            "Rua Caçapava 791, MATHIAS VELHO",
+            "Rua Florianópolis 2030, MATHIAS VELHO",
+            "Rua Florianópolis 4780, MATHIAS VELHO",
+            "Rua Florianópolis 3791, MATHIAS VELHO",
+            "Rua Florianópolis, 4253, MATHIAS VELHO",
+            "Rua Florianópolis 3893, MATHIAS VELHO",
+            "Rua Florianópolis, 4611, MATHIAS VELHO",
+            "Rua Florianópolis, 4200, MATHIAS VELHO",
+            "Rua Espumoso 312, MATHIAS VELHO",
+            "Rua Santo Angelo 30, MATHIAS VELHO",
+            "Rua Manoel fiel 430, MATHIAS VELHO",
+            "Rua Lavras 638, MATHIAS VELHO",
+            "Rua Manoel Fiel 430, MATHIAS VELHO",
+            "Rua São Jeronimo 347, MATHIAS VELHO",
+            "Rua Taquari, 726, MATHIAS VELHO",
+            "Rua Rio Grande do Sul 4240, ESCOLA, MATHIAS VELHO",
+            "Rua Rio Grande do Sul, 5290, MATHIAS VELHO",
+            "Rua Rio Grande do Sul, 3692, MATHIAS VELHO",
+            "Rua Campinas 4230, MATHIAS VELHO",
+            "Rua Palmeiras 344, MATHIAS VELHO",
+            "Rua Arroio Grande 193, MATHIAS VELHO",
+            "Rua Santo Antonio dos Pobres, 1796, MATHIAS VELHO",
+            "Rua Arroio grande 293, MATHIAS VELHO",
+            "Rua Soledade 651, MATHIAS VELHO",
+            "Rua Campinas, 2680, MATHIAS VELHO",
+            "Rua Campinas, 4370, MATHIAS VELHO",
+            "Rua Rio grande do Sul 3692, MATHIAS VELHO",
+            "Rua Santo Antonio dos Pobres, 895, MATHIAS VELHO",
+            "Rua Baltolomeu de Gusmáo, 1212, MATHIAS VELHO",
+            "Rua Clovis Belvilaque, 1581, MATHIAS VELHO",
+            "Rua Espumoso, 176, MATHIAS VELHO",
+            "Rua Três passos 58, RIO BRANCO",
+            "Rua Vidal de negreiros 190, RIO BRANCO",
+            "Rua Machadinho 1707, RIO BRANCO",
+            "Rua Machadinho 1580, RIO BRANCO",
+            "Rua Machadinho 1704, RIO BRANCO",
+            "Rua Cairu 444, RIO BRANCO",
+            "Av Três de Maio 630, RIO BRANCO",
+            "Av Mauá, 79, RIO BRANCO",
+            "Rua Boa saude 2245, RIO BRANCO",
+            "Rua Pistola, torre 10, 4 andar, RIO BRANCO",
+            "Rua Engenheiro Kindle 1280, RIO BRANCO",
+            "Rua primavera, RIO BRANCO",
+            "Rua Onofre Pires, 245, SAO LUIS"
+        ];
+
+        // Locais de doação existentes
+        var locaisDoacao = [];
+
+        // Locais de abrigo existentes
+        var locaisAbrigo = [];
+
+        // Locais de Eldorado do Sul existentes
+        var locaisEldorado = [
+            "Rua Mauro Mendes Totta 638, SAN SOUCI, ELDORADO DO SUL",
+            "Rua Mauro Mendes Totta 1183, SAN SOUCI, ELDORADO DO SUL",
+            "Travessa Paul Harris 103, SAN SOUCI, ELDORADO DO SUL",
+            "Rua Frederico Warstat 1170, SAN SOUCI, ELDORADO DO SUL",
+            "Av Frederico Warstat, 1098, FARMÁCIA ASSOCIADOS, SAN SOUCI, ELDORADO DO SUL",
+            "Rua Sapucaia, 135 - URGENTE, SAN SOUCI, ELDORADO DO SUL",
+            "Rua joão da cunha alencastro 615, SAN SOUCI, ELDORADO DO SUL",
+            "Rua Sapucai 135, SAN SOUCI, ELDORADO DO SUL",
+            "Rua Dona Marta, 650, SAN SOUCI, ELDORADO DO SUL",
+            "Rua Irene Santos Totta, 991, casa 2, SAN SOUCI, ELDORADO DO SUL",
+            "Rua 1 de maio, PROGRESSO, ELDORADO DO SUL",
+            "Rua Dinamarca 118, BAIRRO RESIDENCIAL, ELDORADO DO SUL",
+            "Av Getulio Vargas 630, CENTRO, ELDORADO DO SUL",
+            "Rua Laguna 350, CENTRO, ELDORADO DO SUL",
+            "Rua América,1200 Distribuidora Himalaia, INDÚSTRIA, ELDORADO DO SUL"
+        ];
+
+
+        // Locais de Porto Alegre existentes
+        var locaisPortoAlegre = [];
+
+        // Locais de São Leopoldo existentes
+        var locaisSaoLeopoldo = [];
+
+        // Função para abrir a aba selecionada
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Mostrar locais de resgate ao carregar a página
+        document.addEventListener("DOMContentLoaded", function () {
+            openTab(event, 'resgate');
+            showLocations('resgate');
+        });
+
+        // Função para exibir locais de resgate, doação ou abrigo
+        function showLocations(locationType) {
+            var locations = [];
+            var listID = "";
+
+            // Selecionar a lista correta com base no tipo de local
+            switch (locationType) {
+                case 'resgate':
+                    locations = locaisResgate;
+                    listID = 'resgate-list';
+                    break;
+                case 'eldoradoDoSul':
+                    locations = locaisEldorado;
+                    listID = 'eldoradoDoSul-list'; // Corrigido para 'eldoradoDoSul-list'
+                    break;
+                case 'portoAlegre':
+                    locations = locaisPortoAlegre;
+                    listID = 'portoAlegre-list';
+                    break;
+                case 'saoLeopoldo':
+                    locations = locaisSaoLeopoldo;
+                    listID = 'saoLeopoldo-list';
+                    break;
+            }
+
+            var locaisList = document.getElementById(listID);
+            locaisList.innerHTML = ''; // Limpar a lista antes de adicionar os itens
+
+            // Adicionar cada local à lista
+            locations.forEach(function (local) {
+                var listItem = document.createElement('li');
+                listItem.textContent = local;
+                // Adicionar hiperlink para o Google Maps com base no endereço
+                var enderecoFormatado = encodeURIComponent(local);
+                listItem.innerHTML = `<a href="https://www.google.com/maps/search/?api=1&query=${enderecoFormatado}" target="_blank">${local}</a>`;
+                locaisList.appendChild(listItem);
+            });
+        }
+
+
+
+        // Função para filtrar locais por nome
+        function searchLocations() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById('resgate-list'); // Pesquisar apenas na lista de resgate
+            li = ul.getElementsByTagName('li');
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName('a')[0]; // Pegar o primeiro hiperlink
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = '';
+                } else {
+                    li[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Função para adicionar novo endereço de resgate
+        function addNewResgate() {
+            var input = document.getElementById('newResgateInput');
+            var endereco = input.value.trim();
+            if (endereco !== '') {
+                locaisResgate.push(endereco);
+                showLocations('resgate');
+                input.value = ''; // Limpar o campo de entrada após adicionar
+            } else {
+                alert('Por favor, insira um endereço válido.');
+            }
+        }
+
+        // Função para adicionar novo endereço em Eldorado do Sul
+        function addNewEldorado() {
+            var input = document.getElementById('newEldoradoInput');
+            var endereco = input.value.trim();
+            if (endereco !== '') {
+                locaisEldorado.push(endereco);
+                showLocations('eldoradoDoSul');
+                input.value = ''; // Limpar o campo de entrada após adicionar
+            } else {
+                alert('Por favor, insira um endereço válido.');
+            }
+        }
+
+        // Função para adicionar novo endereço em Porto Alegre
+        function addNewPortoAlegre() {
+            var input = document.getElementById('newPortoAlegreInput');
+            var endereco = input.value.trim();
+            if (endereco !== '') {
+                locaisPortoAlegre.push(endereco);
+                showLocations('portoAlegre');
+                input.value = ''; // Limpar o campo de entrada após adicionar
+            } else {
+                alert('Por favor, insira um endereço válido.');
+            }
+        }
+
+        // Função para adicionar novo endereço em Guaíba e São Leopoldo
+        function addNewGuaibaSaoLeopoldo() {
+            var input = document.getElementById('newGuaibaSaoLeopoldoInput');
+            var endereco = input.value.trim();
+            if (endereco !== '') {
+                locaisSaoLeopoldo.push(endereco);
+                showLocations('saoLeopoldo');
+                input.value = ''; // Limpar o campo de entrada após adicionar
+            } else {
+                alert('Por favor, insira um endereço válido.');
+            }
+        }
+
+    </script>
+</body>
+</html>
